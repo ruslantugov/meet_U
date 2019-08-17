@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Places Search Box</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
+        
+</head>
+
+<body>
+       
+    <div id="map"></div><br>
+    <div id="persons-added"></div>
+    <form id="person-form">
+        <label for="person-input">Add a Person!</label>
+        <!-- <input type="text" id="person-input"><br> -->
+    
+        <!-- Button triggers new movie to be added -->
+
+         <input id="person-input" class="controls" type="text" placeholder="Search Box" / >
+         <input id="add-person" />
+        <button id="add-person-btn" type="text" value="Add a Person!">ADD</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS9dZzgtfgQt1iOlUIdv7BLNcfGJmjFAs&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script src="./assets/javascript/app.js"></script>
+   
+</body>
+
+</html>

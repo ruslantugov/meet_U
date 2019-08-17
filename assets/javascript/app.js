@@ -1,0 +1,199 @@
+
+var locations = []
+var map;
+
+
+$("#add-person-btn").on("click", function (e) {
+    e.preventDefault()
+    var x = renderInput();
+    // renderInput()
+
+    codeAddress(x);
+})
+//____________________________________________________________________
+//adding zip on a page
+
+// function searchMeets() {
+//     var queryURL = "http://localhost:2112/yapi/bylatlng]";
+
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET",
+
+//     }).then(function (response) {
+//         console.log(response.length);
+//         console.log(response);
+//         console.log("----")
+
+//         for (var x = 0; x < response.length; x++) {
+//             console.log(response[x]);
+//             document.writeln(response[x].alias)
+//             document.write("<br>")
+//         }
+// }
+
+function renderInput() {
+    var value = $("#add-person").val()
+    var newPerson = $("<div>");
+    // Adding a class
+    newPerson.addClass("person");
+    // AddingnewPerson a data-attribute with a value 
+    newPerson.attr("data-name", value);
+    // Providing the button's text with a value 
+    newPerson.text(value);
+    // Adding the value to the HTML
+    $("#persons-added").append(newPerson);
+    $("#add-person").val("")
+
+    return value;
+}
+//____________________________________________________________________
+
+//START:: take from here on in to put into meetU-app.js({mapRener();})
+function placeMarker(location, turtle) {
+    var marker = new google.maps.Marker({
+        position: location,
+        map: turtle
+    });
+}
+//____________________________________________________________________
+function codeAddress(zipCode) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': zipCode }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            //Got result, center the map and put it out there
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 10, center: { lat: 40.706005, lng: -74.008827 } });
+
+            locations.push({
+                position: results[0].geometry.location,
+            })
+            
+            //for loop for creating new markers on a map
+            for (let i = 0; i < locations.length; i++) {
+                var marker = new google.maps.Marker({
+
+                    position: locations[i].position,
+                    map: map
+                    
+                });
+            }
+            
+
+            map.addListener( 'click', function (event) {
+                //structure that google gives back -> R
+                var selectedLong = event.latLng.lng();
+                var selectedLat = event.latLng.lat();
+                
+                //SEND TO BACKEND
+                //toBackend(selectedLat,selectedLong);
+
+                   
+                var queryURL = "https://radiant-temple-43796.herokuapp.com/yapi/bylatlong/" + selectedLat + "/" + selectedLong;
+                console.log(queryURL);
+                console.log(event.latLng);
+                console.log("yerrrrrr");
+                console.log(event);
+                console.log(latLng);
+                placeMarker(event.latLng, map);
+                // \\|//
+                //14:59--MIKE: searchMeets(selectedLat,selectedLong);
+                //searchMeets(selectedLat, selectedLong);
+                // //|\\
+
+                
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    console.log(response[0].name);
+                })
+                
+
+            });
+
+        } else {
+            alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+}
+// _________________________________________
+// create new map when the page load
+function initAutocomplete() {
+    
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 40.706005, lng: -74.008827 },
+        zoom: 13,
+        mapTypeId: 'roadmap'
+    });
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('person-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function () {
+        searchBox.setBounds(map.getBounds());
+    });
+
+   
+
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+            return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+            var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+            
+
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+}
+/*
+$(document).ready(function() {
+codeAddress("08831"); 
+codeAddress("07305");
+codeAddress("07310");
+});
+*/

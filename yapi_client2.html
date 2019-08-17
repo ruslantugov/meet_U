@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Meet-U</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/00e711a3ed.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <style>
+        p {
+            font-family: Arial, Helvetica, sans-serif
+        }
+
+        td,
+        table {
+            border-collapse: collapse;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+            font-size: .8rem;
+        }
+
+        hr {
+            border: 1px solid white;
+        }
+
+        .jumbotron {
+            color: white;
+            background-color: red;
+            margin-top: 5;
+        }
+
+        .jumbotronDet {
+            color: black;
+            background-color: white;
+            border-color: lightgray;
+            border-style: solid;
+            border-radius: .5rem;
+        }
+
+        #logos {
+            width: 10%;
+            height: 10%;
+        }
+
+        #logom {
+            width: 15%;
+            height: 15%;
+        }
+
+        .jumbotron {
+            border-radius: 6px;
+        }
+
+        .btn-space {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .divCenter {
+            text-align: center;
+        }
+    </style>
+    <br>
+    <div class="container">
+        <div class=headingDiv>
+            <!-- Results title div -->
+            <div class="jumbotron">
+                <h1 class="text-center">M
+                    <i class="fas fa-sm fa-hamburger"></i>
+                    <!--- Hamburger characters / key embedded below -->
+                    <i class="fas fa-sm fa-hamburger"></i>
+                    T-U</h1>
+                <h3 class="text-center">Find a new favorite <font size="2">(or least favorite)</font> meeting spot !!
+                </h3>
+                <hr>
+                <h5>Powered by:</h5>
+                <img src="./assets/images/Yelp_trademark_RGB_outline.png" id="logom" alt="Yelp image">
+                <img align="right" src="./assets/images/noaa.jpeg" id="logos" alt="NOAA image">
+            </div>
+        </div>
+        <div id="numRest">
+            <h2>Searching...</h2>
+        </div>
+        <!-- dymamic total row -->
+        <div class=detailDiv>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Select</th> <!-- Results header -->
+                        <th scope="col">Name (cost)</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- addt'l rows inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <div class=selectedDiv>
+            <!-- selected div displayed after primary slection from list uses show/hide -->
+            <div class="jumbotronDet">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img id="restPic" class="img-thumbnail" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-stretch justify-content-center flex-column">
+                        <h5 id="meetName"></h5>
+                        <br>
+                        <h7 id="meetLoc1"></h7>
+                        <h7 id="meetLoc2"></h7>
+                        <h7 id="meetTel"></h7>
+                    </div>
+                    <div class="col-md-5">
+                        <hr>
+                        <hr>Rating:
+                        <h7 id="meetRat"></h7>
+                        Cost:
+                        <h7 id="meetCost"></h7>
+                        <hr>
+                        <hr>
+                        <button type="button" class="btn btn-success btn-space" onClick="window.location.reload()">New
+                            Choice</button>
+                        <a id="meetLink"></a> <!-- populated dynamically w/Yelp URL for selected Meet spot -->
+                        <button type="button" id="select" class="btn btn-primary btn-space">Select</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div class=schedDiv>
+            <!-- Summary jumbo for weather and other details -->
+            <div class="jumbotronDet">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-11">
+                        <h3><br>
+                            <div id="weatherLoc"></div>
+                        </h3><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-0" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-0"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-1" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-1"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-2" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-2"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-3" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-3"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-4" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-4"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-5" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-5"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" style="width: 80px">
+                            <img id="0-6" height="80" width="80" alt="Yelp image">
+                            <div class="divCenter" id="w0-6"></div>
+                            <!-- <img id="restPic" class="img-thumbnail" alt="Responsive image"> -->
+                        </div><br><br>
+                    </div>
+                </div>
+            </div><br></br>
+        </div>
+    </div>
+
+    <script>
+
+        //  var searchMeets = function (meetsLat, meetsLong) {     /* primary search method passed by map function */
+        //  var queryURL = "https://radiant-temple-43796.herokuapp.com/yapi/bylatlong/" + meetsLat + "/" + meetsLong;
+        //  ^ these two lines needs to be uncommented if we are successful @ getting Google Maps to pass lat / long
+        //    else ... use the (2) by zip lines below this line;
+
+        var searchMeets = function (meetZip) {     /* primary search method passed by map function */
+            var queryURL = "https://radiant-temple-43796.herokuapp.com/yapi/byzip/" + meetZip;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response)
+                response.sort(function (a, b) {         /* primary sort on rating, descending */
+                    return b.rating - a.rating
+                })
+                responseRet = response;
+                $("#numRest").html("<h2>" + response.length + " results: sort order <font size='5'>on</font> rating (high to low)</h2><p>Select a meeting place by clicking on the 'yelp' logo</p>");
+
+                for (let meetCnt = 0; meetCnt < response.length; meetCnt++) {  // populates table with composed detail lines
+                    var meetRow = $("<tr>");                                   // 'yLinkID' is used for onclick reference to retrieve the 'full' record
+                    meetRow.attr("yLinkID", response[meetCnt].id);
+                    meetRow.addClass("yButton");
+                    var meetBullet = $("<td>").html('<img src="./assets/images/Yelp_burst_positive_RGB.png" height="35" width="35">');
+                    if ("price" in response[meetCnt])
+                        var meetName = $("<td>").text(response[meetCnt].name + '  (' + response[meetCnt].price + ')');
+                    else
+                        var meetName = $("<td>").text(response[meetCnt].name);
+                    var meetCat = $("<td>").text(response[meetCnt].categories[0].title);
+                    var meetLoc1 = $("<td>").text(response[meetCnt].location.address1 + ', ' + response[meetCnt].location.city + "  " + response[meetCnt].location.state);
+                    var meetRating = $("<td>").text(response[meetCnt].rating + ' / ' + response[meetCnt].review_count);
+                    meetRow.append(meetRow, meetBullet, meetName, meetCat, meetLoc1, meetRating);
+                    meetRow.attr("id", meetCnt);
+                    $("tbody").append(meetRow);
+                }
+                $('.detailDiv').show();
+            });
+        };
+
+        var urlParam = function (name, w) {
+            w = w || window;
+            var rx = new RegExp('[\&|\?]' + name + '=([^\&\#]+)'),
+                val = w.location.search.match(rx);
+            return !val ? '' : val[1];
+        }
+
+        // onclick event registration for the final select button
+        $(document.body).on("click", "#select", function () {   /* final slection shows selected/built and scrolls to bottom */
+            $('.schedDiv').show();
+            window.scrollTo(0, document.body.scrollHeight);
+
+            /* insert 'send invite' logic/connector here if we get to it */
+        })
+
+        // onclick event registration for selection of a restaurant from the list of results
+        $(document.body).on("click", ".yButton", function () {
+            var selectedID = $(this).attr("yLinkID");
+            var selectedNum = $(this).attr("id");
+            selectedNum++;
+            for (let x = selectedNum; x < 50; x++)    /* code removes all restaurants following selected */
+                $('#' + x).empty();
+            for (let x = 0; x < selectedNum - 1; x++) /* code to remove aka EMPTY all restaurants prior to selecdted */
+                $('#' + x).empty();
+
+            meetLong = responseRet[selectedNum - 1].coordinates.longitude;  /* pull selected Meet spot long/lat and YELP ID for more detailed lookup */
+            meetLat = responseRet[selectedNum - 1].coordinates.latitude;
+            meetID = responseRet[selectedNum - 1].id;
+
+            var queryURL = "https://radiant-temple-43796.herokuapp.com/yapi/byid/" + meetID;  /* "byid" method of the YAPI connector hosted on Heroku */
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                restPic.src = response.image_url;
+                meetName = response.name;
+                $("#meetName").text(meetName);
+                meetCat = response.categories[0].title;
+                $("#meetCat").text(meetCat);
+
+                for (let x = 0; x < response.location.display_address.length; x++) {   /* pull formatted addresses which  may be one or more lines */
+                    $("#meetLoc1").append(response.location.display_address[x]);
+                    $("#meetLoc1").append("<br>");
+                }
+                meetsLocale = response.location.city + ", " + response.location.state;  /* for weather outlook */
+                $("#weatherLoc").text("7 day forecast for " + meetsLocale);
+
+                var yellButton = $("<a>");                  /* dynamicall build the red Yelp link button ... they love red */
+                yellButton.attr("href", response.url);
+                yellButton.text("Open Yelp");
+                yellButton.attr("target", "_blank");
+                yellButton.attr("class", "btn btn-danger btn-space");
+                $("#meetLink").append(yellButton);
+                meetTel = response.display_phone;
+                $("#meetTel").text(meetTel);
+                meetRat = response.rating;
+                $("#meetRat").text(meetRat);
+                meetCost = response.price;
+                $("#meetCost").text(meetCost);
+
+            })
+            var queryURL = "https://api.weather.gov/points/" + meetLat + "," + meetLong; /* setup primary weather lookup */
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                forecastURL = response.properties.forecast; /* grab JSON-LD link ... see https://json-ld.org */
+
+                queryURL = "https://radiant-temple-43796.herokuapp.com/whetherornot?url=" + forecastURL; /* whet hero r not; node hosted function for REST pull which leverages "unirest" module hosted on Heroku */
+                console.log(queryURL);
+
+                $.ajax({
+                    url: queryURL,  /* pull detailed weather record which includes 7 day outlook, images, etc */
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    for (let x = 0; x < 7; x++) {
+                        weatherPic = response.properties.periods[x * 2].icon;
+                        $("#0-" + x).attr("src", weatherPic); /* dynamically populate 7-cards */
+                        $("#w0-" + x).html(response.properties.periods[x * 2].temperature + "'F<br>Wind: " + response.properties.periods[x * 2].windSpeed);
+                        console.log(response.properties.periods[x].name + ": " + response.properties.periods[x].shortForecast)
+                    }
+                });
+            });
+            $('.selectedDiv').show();
+        });
+
+        $('.detailDiv').hide();
+        $('.selectedDiv').hide();         /* hide inactive divs */
+        $('.schedDiv').hide();
+
+        meetLong = "";                    // unused for now
+        meetLat = "";                     // unused for now
+        responseRet = "";
+        var forecastURL = "";
+        var zipIn = urlParam('zip');
+
+        //searchMeets("40.709937","-73.848305892030"); // stub for lat/long test; ultimately, other code calls the searchMeets function with Lat/Long
+
+        searchMeets(zipIn);                            // stub for prototype 
+
+    </script>
+</body>
+
+</html>

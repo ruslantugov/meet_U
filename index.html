@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>I'll meetU there!!</title>
+    <div id="datepicker"></div>
+
+    <!--bootStrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--myStylesheet.css-->
+    <link rel="stylesheet" href="assets/css/meetU-style.css">
+    <!--jQuery CDN-->
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+</head>    
+<body>
+  <!--// START~~section3_TOP\2/ \\-->
+  <section id="nameButtons">
+    <div id="info-chgConf">
+      <div class="container">
+        <h8>PRESS purple button if someone backed out!</h8>
+        <h8>When ready, click FINALIZE!</h8>
+        <button type="button" id="finalSubmit" class="btn btn-success">FINALIZE!</button>
+      </div>
+    </div>
+                  <ul id="header-sectionListNames">
+                      <!--buttons here(instead of in the box..just display info there!!(map?))-->
+              
+                  </ul>
+          <!--///START\2cal/CALENDAR\\\-->
+          <section id="calendarLocation">
+            <!--calendar ~~HERE~~ -->
+            
+          </section>   
+          <!--\\\END\2cal/CALENDAR///-->     
+  </section>
+  <!--\\  END~~section3_TOP  //-->
+ 
+ <!--//////~~~~~START/$(document).ready()...""\0/""~\\\\\\-->
+ <section id="input-section">
+   <div class="container">
+     
+     <!--// FLIPBOX \\-->
+     <div class="flip-box">
+       <div class="flip-box-inner">
+
+         <div class="flip-box-front">
+           <br><br>
+           <!--FRONT INFO-TEXT-->
+           <div>
+             <p>WELCOME TO THE meetU-app!</p>
+             <p> this box will flip for you to get started;</p>
+             <p> after youre done, we will get your friends added!</p>
+             <hr>
+           </div>
+           <!--ENDFRONT--->
+          </div>
+          <!--START BACK-->
+          <div class="flip-box-back">
+            <!-- where the stuff from the APIs will go-->
+            <h6> ~ meetU ~ </h6>
+            <table id="input-table" cellpadding="0" cellspacing="0">
+              <thead>Lets get started!</thead>
+              <br>
+              <tbody id="entrData">
+                <input type="text" id="nameIn" value="yourName"> <br>
+                <input type="text" id="zipLocIn" value="zipCode"> <br> 
+                <br>
+                <button type="button" class="btn btn-lg btn-primary" id="userSUBMIT">~SUBMIT~</button>
+                </button>
+               </tbody>
+             </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+ <!--\\\\\\BREAK::END->jump>>>nuFlipBox BELOW*\1/*//////-->
+ 
+<!--//START~~NEW SECTION\\-->
+<div id="nuSect-friendsPN">
+  <div class="container">
+      <!--this.FlipBox-Nu-->
+      <div class="flip-box">
+        <div class="flip-box-inner">
+            <!--FRONT::INFO/MAP-->
+          <div class="flip-box-front">
+            <br>
+            <!--stuff here-->
+            <div id="confirmDataArea">
+              <!--insert here via jQuery!-->
+              <h3 id="insertJStext">MAP</h3>
+              <div id="mapLocation">
+                <figure id="mapFigure">
+                  <!--INSERT <!MAP!> HERE-->
+                </figure>
+
+              </div>
+              <div id="hold-objData">
+                <!--stuff here too-->
+                <ul id="nameList">
+                  <!--list.js ADD-IN-->
+                </ul>
+              </div>
+            </div>  
+          </div>
+          <!--end of FRONTbox conten(s)-->
+
+          <!--back-->
+          <div class="flip-box-back">
+            <h5 id="sectTwoTxtHead">THAT'S THE SPIRIT!</h5>
+            <p id="secT-pTagHeadsub">now, now, we know you got some friends...<br>let's get them to meetU!</p>
+            <!--friend inputs-->
+                <label for="add-nuName">Friend's name:</label> <br>
+            <input type="text" id="add-nuName">
+                            <br>
+                <label for="add-nuZipCode">Friend's zipCode:</label> <br>
+            <input type="text" id="add-nuZipCode"> 
+                        <br>
+            <button type="button" id="nuSubmit" class="btn btn-primary">~GO~</button>
+               <p id="showPostClick">move mouse UP(this.window)</p>
+                                  
+          </div>
+          <!--END BACK-->
+        </div>
+      </div>
+  </div>
+</div>
+<!--\\END~~this/.\SECTION//-->
+
+<!--INSERT div for YELP RESULT-LIST below \3/-->
+<!--//START~~Final Screen::list of api stuff\\-->
+<div id="map" class="container">
+  <section id="mapHERE">
+    <!--js to insert map here-->
+  </section>
+  <!--YELP-LIST::START-->
+  <div id="yelpListHolder" class="container">
+    <section id="list-yelpResults">
+      
+    </section>
+  </div>
+
+</div>
+
+<!--\\END~~/_3_\~//-->
+
+
+
+
+<script src="./assets/javascript/meetU-app.js"></script>
+
+
+
+  </body>
+  </html>

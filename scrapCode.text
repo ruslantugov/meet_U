@@ -1,0 +1,182 @@
+ <div class="container" id="headerContainer">
+
+    <h1 id="titleLineDelt">Welcome to the "meetU" app!</h1>
+    <p id="introText">To get started: Enter all relevant information! We'll take care of the rest!</p>
+      
+    <!--unordered list where names of people will go-->
+    <ul id="entryDataList">
+      <!--entry arrays go here-->
+    </ul>
+    <!--//\/\/\/\/\/\/\/\\-->
+    <section id="pplDelta">
+      <div class="container-fluid" id="ppDlt">
+        <ul id="delta-list">
+          <!--nameArray(i) goes here to changge to nameArray(f) summating into nameArray(delta)-->
+          <!--have buttons generater/per/person[nameArray][n].length-->
+          <!--^^^via jQuery^^^-->
+        </ul>
+        <!--button to confirm(chaneck if everyone is still coming-->
+        <button type="button" id="chkBtn" class="btn btn-danger">CHECK</button>
+      </div>
+          <!--button shows up to CONFIRM >> this renders zipLocArray.length to apiCallback()'s-->
+         
+    </section>
+
+  </div>
+  <!--formInput-->
+  <form class="form-body">
+    
+      <input type="text" id="input-name" value="NAME">
+      <br>
+      <input type="text" id="input-zipLoc" value="LOCATION">
+      <!--submitBtn-->
+      <button type="button" id="userInitBtn" class="btn-success">Submit Info!</button>
+    </form>
+      <!--section-tag for the addingFriends && MAP-->
+      <section id="section-sideR">
+        <div class="container">
+          <tbody>
+            <h6>Who else is going to meetU?</h6>
+            <input type="text" id="addFriend" value="FRIEND'S NAME">
+            <br>
+            <input type="text" id="friendZipLoc" value="LOCATION">
+            <button type="button" id="moreFriends" class="btn-warning">+n</button>
+            <button type="button" id="pushDataBtn" class="btn-success">Submit!</button>
+          </tbody>
+        </div>
+        
+      </section> 
+        <!--DIV (defined) where the mapp will show up-->
+        <div id="mapDiv" class="container-fluid">
+          <figure id="figure-map">
+              <!--here's where the map will go-->
+
+            MAP MAP MAP MAP...
+        </figure>
+        <!--collab with team about how this will look!****-->
+        </div>
+
+  <!--footer for the navDropdown!-->      
+  <footer id="footerTag">
+    vvvvvv NAV BAR SHIT vvvvvv
+    <!--have a navDropDown bar show here after friends are added and rendered into the js semantics functionality-->
+  </footer>
+
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      `   \/ JAVASCRIPT \/  `
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  //  BEGIN JAVASCRIPT
+/*
+$(document).ready(function() {
+    // GLOBAL VARIABLES
+    const nameArray = [];
+    const zipLocArray = [];
+    
+    //hide the side sction
+    $("#section-sideR").hide();
+
+    //hide the VALUE on click (key input lines(userINIT))
+    $("#input-name").on('click', function(hideUserName) {
+        hideUserName = $("#input-name");
+        hideUserName.val(""); 
+    })
+    $("#input-zipLoc").on('click', function(HideUserLoc) {
+        HideUserLoc = $("#input-zipLoc");
+        HideUserLoc.val("");
+    })
+    //submitbuttonINIT(fn)
+    $("#userInitBtn").on('click', function() {
+        var nameData = $("#input-name").val()
+        var zipLocData = $("#input-zipLoc").val();
+        nameArray.push(nameData);
+        zipLocArray.push(zipLocData)
+        //GLOBALarray.push(zipLocData);
+        console.log(nameArray);
+        console.log(zipLocArray);
+
+        $("#introText").html("NOW LETS ADD YOUR FRIENDS! *press '+n' before SUBMIT to enter data*");
+        $(".form-body").hide();
+        
+        //show side section
+        $("#section-sideR").show();
+        
+    })
+    
+    //Section SHOWS & this is where we add n-amount(friends)//
+    $("#addFriend").on('click', function(hideFriendName) {
+        hideFriendName = $("#addFriend");
+        hideFriendName.val("");
+    })
+    $("#friendZipLoc").on('click', function(hideFriendZipLoc) {
+        hideFriendZipLoc = $("#friendZipLoc");
+        hideFriendZipLoc.val("");
+    })
+        //add freindData to corresponding arrays!
+        $("#moreFriends").on('click', function() {
+            var friendNameData = $("#addFriend").val();
+            var friendZipLocData = $("#friendZipLoc").val();
+            nameArray.push(friendNameData);
+            zipLocArray.push(friendZipLocData);
+            //consoleLog array to check how its doing
+            console.log(nameArray);
+            console.log(zipLocArray);
+            //joke text lol
+            $("#introText").html("C'mon now! I'm sure you got more friends than that now? lol");
+
+            $("#addFriend").val("");
+            $("#friendZipLoc").val("");
+            //put nameArry to $("#input-arrayData")
+            
+            /**
+             * MAYBE we can have an interval->TRIGGER either a ...<<endl
+             * strtl>>...modal !! quickPopUp{**I think this isnt allowed for this}
+             * #JUST a thought */    
+    /*    })
+        //Summation of entries && SECTION.hide();
+        $("#pushDataBtn").on('click', function(confimFriends) {
+            $("#section-sideR").hide();
+            $("#titleLineDelt").text("Woohoo!!!!!");
+            $("#introText").text("Party of " + (nameArray.length) + " meeting up!");
+        ////////////v\\\\\\\\\\\
+        //loop for name list
+        for(var n = 0; n < nameArray.length; n++) {
+            
+            //set some new GLOBAL-vars\\
+            const toggleInOut = $("<button>").addClass("btn btn-warning toggL");
+            console.log("toggle BUTTON INITIATED");
+            $("#input-arrayData").append('<li>'+nameArray[n]+'</li>');
+                
+    
+
+
+          //      $("#entryDataList").append('<li>' + nameArray[n] + '</li>');
+                console.log($("#input-arrayData"));
+            }
+        
+            //def $("<section>");
+            //took out .hide() />>if there's an issue check here for check
+            $("#pplDelta").show(); 
+            
+
+            })
+
+
+            
+        })
+*/
+        ////////\\\\\\\\
+        //crossRef the API data
+
+        //make a function that calculates the optimalLocation, meetUpPoint
+    
+        //append MAP to mapDiv
+
+    
+    
+
+        
+
+
+    
